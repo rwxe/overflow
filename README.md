@@ -115,13 +115,15 @@ There's a good case to be made that a panic is an unidiomatic but proper respons
 
 ### Performance considerations
 
-Compared with the integer type safety libraries of other languages (such as C++), this library uses some seemingly slow operations, such as division. But this does not mean that these methods will be slow, on the contrary, it will be faster than complex implementations in other languages. The reason is that Go does not allow forced inlining, and any complex functions will be abandoned for inlining, resulting in additional calling overhead. Short functions are lightning fast due to automatic inlining. For example, for unsigned 64-bit integer multiplication overflow detection, when inlining is disabled, division takes five times as long as long multiplication, but after automatic inlining is allowed, division takes 1/5 of long multiplication.
+Compared to integer safe libraries in other languages (e.g. C++), this library uses some seemingly slow operations, such as division. But that doesn't mean these methods will be slow. In fact, because of Go's automatic inlining strategy for short functions and compiler optimizations, these operations are actually very fast in benchmark tests, lightning fast. 
+
+In addition, Go defines the overflow behavior of signed integers, making the detection of signed integer overflow simple and efficient.
 
 Note that using `//go:noinline` in your business function will not affect the inlining of the library function. Only disabling global inlining through `-gcflags="-l"` will affect the inlining of this library function.
 
 ### Basis and dependencies
 
-This library is based on Go's official compiler implementation and language specification, which defines the behavior when integer overflow occurs.
+The library is developed based on Go's official compiler implementation (gc) and language specifications.
 
 ### License
 
