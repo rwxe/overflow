@@ -4,7 +4,7 @@ Check for integer overflow in Golang arithmetic and type conversion.
 Other language README: [中文版](./README.zh_CN.md)
 ### Install
 
-*This is a special README before the PR is merged by the upstream.*
+*This is still a maintenance fork until it is merged upstream.*
 
 This repository forks from `johncgriffin/overflow` and adds overflow detection for unsigned integer arithmetic and type conversions between integers.
 
